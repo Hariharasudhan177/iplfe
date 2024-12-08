@@ -1,0 +1,10 @@
+.row{
+    background-color: #99ccff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col{
+    flex: 1;
+}

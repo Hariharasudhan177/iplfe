@@ -1,0 +1,35 @@
+.header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 7px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.title {
+    margin-right: 40px;
+}
+
+button {
+    background-color: #99ccff;
+    font-family: Arial, sans-serif;
+    font-size: medium;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #75b8fc;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

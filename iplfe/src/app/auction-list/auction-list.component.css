@@ -1,0 +1,61 @@
+.row {
+    display: flex;
+    align-items: center;
+    background-color: #cce6ff;
+    padding: 10px;
+}
+
+.col {
+    flex: 3;
+    text-align: center;
+}
+
+.col-two{
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row input {
+    height: 20px;
+    width: 100%;
+    font-size: 12px;
+    border: 1px solid #ccc;
+}
+
+.row select{
+    height: 25px;
+}
+
+.filters-box {
+    background-color: #d9ecfc;
+}
+
+.filters-box span {
+    display: block;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+/* CSS Grid for filters layout */
+.filter-bar.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.filter-bar.grid span {
+    display: flex;
+    align-items: center;
+}

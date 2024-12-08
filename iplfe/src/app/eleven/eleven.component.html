@@ -1,0 +1,13 @@
+<div>
+    <app-eleven-header></app-eleven-header>
+    <div>
+        <app-eleven-item 
+            *ngFor="let player of team; let i = index;" 
+            [player]="player"
+            [index]="i"
+            (move)="movePlayer(i, $event)"></app-eleven-item>
+    </div>
+    <div>
+        <app-eleven-check [team]="this.team"></app-eleven-check>
+    </div>
+</div>

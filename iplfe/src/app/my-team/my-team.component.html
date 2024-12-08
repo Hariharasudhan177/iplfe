@@ -1,0 +1,8 @@
+<div class="container">
+    <app-my-team-header [purse]="this.purse"></app-my-team-header>
+    <app-my-team-details [team]="this.team"></app-my-team-details>
+    <div class="placeholder" *ngIf="this.team.length == 0">Kick off your team selection by picking players from the list below!</div>
+    <div>
+        <app-my-team-item *ngFor="let player of team" [player]="player"></app-my-team-item>
+    </div>
+</div>

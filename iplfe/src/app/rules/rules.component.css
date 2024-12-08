@@ -1,0 +1,22 @@
+.rules-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    padding: 10px;
+  }
+
+  .heading {
+    border-bottom: 2px solid;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 20px;
+  }
+
+  ul ul {
+    list-style: circle;
+    margin-left: 20px;
+  }

@@ -1,0 +1,25 @@
+<div>
+    <div class="row">
+        <div class="col">{{this.player.name}}</div>
+        <div class="col">{{this.player.type}}</div>
+        <div class="col">{{this.player.isForeigner ? 'OTH' : 'IND'}}</div>
+        <div class="col">{{this.player.price * 10000000}}</div>
+        <div class="col">
+            <button (click)="deletePlayer(this.player)">Delete</button>
+        </div>
+    </div>
+    <div class="second-row">
+        <div class="second-col">
+            {{'(Tags: '+ 
+            (this.player.isOpener ? ' Opening-batter' : '') + 
+            (this.player.isMiddle ? ' Top/Middle-order-batter' : '') + 
+            (this.player.isFinisher ? ' Finisher' : '') + 
+            (this.player.isSpinner ? ' Spin-bowler' : '') + 
+            (this.player.isFastBowler ? ' Fast-bowler' : '') + 
+            (this.player.isNewball ? ' Newball-bowler' : '') + 
+            (this.player.isDeath ? ' Death-bowler' : '') + 
+            (this.player.isDependable ? ' Dependable-bowler' : '') + 
+            ')'}}
+        </div>
+    </div>
+</div>

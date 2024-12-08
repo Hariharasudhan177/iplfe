@@ -1,0 +1,150 @@
+<div>
+    <div class="notification-container">
+        <div class="notification" [ngClass]="{
+            'highlight-positive': team.length >= 18,
+            'highlisht-negative': team.length < 18
+        }">
+            {{this.team.length >= 18 ? 'Squad ready' : 'Squad not ready' }}
+        </div>
+        <div class="notification" [ngClass]="{
+            'highlight-positive': playingXIready,
+            'highlisht-negative': !playingXIready
+        }">
+            {{this.playingXIready ? 'PlayingXI ready' : 'PlayingXI not ready' }}
+        </div>
+    </div>
+    <div class="task-container">
+        <h4>You have time till March 14th to fix the Squad.</h4>
+        <ul class="task-list">
+            <li class="task-item">
+                <span>
+                    {{this.team.length >= 18 ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 18 players in the squad
+                </span>
+            </li>
+        </ul>
+        <h4>You have time till TBD to fix the PlayingXI.</h4>
+        <ul class="task-list">
+            <li class="task-item">
+                <span>
+                    {{this.maximumFourForiegnPlayers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Maximum 4 Foreign Players, currently there {{this.noOfForeignPlayers > 1 ? 'are' : 'is'}} {{this.noOfForeignPlayers}}. 
+                </span>
+                <button (click)="listPlayers(this.foreignPlayers)" *ngIf="this.noOfForeignPlayers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumOneWicketKeeper ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 1 Wicket Keeper, currently there {{this.noOfWicketKeepers > 1 ? 'are' : 'is'}} {{this.noOfWicketKeepers}}. 
+                </span>
+                <button (click)="listPlayers(this.wicketKeepers)" *ngIf="this.noOfWicketKeepers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoOpeners ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 Opening batters, currently there {{this.noOfOpeners > 1 ? 'are' : 'is'}} {{this.noOfOpeners}}. 
+                </span>
+                <button (click)="listPlayers(this.openers)" *ngIf="this.noOfOpeners > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.maximumThreeOpeners ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Maximum 3 Opening batters, currently there {{this.noOfOpeners > 1 ? 'are' : 'is'}} {{this.noOfOpeners}}. 
+                </span>
+                <button (click)="listPlayers(this.openers)" *ngIf="this.noOfOpeners > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoMiddles ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 Top/Middle order batters, currently there {{this.noOfMiddlers > 1 ? 'are' : 'is'}} {{this.noOfMiddlers}}. 
+                </span>
+                <button (click)="listPlayers(this.middlers)" *ngIf="this.noOfMiddlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoFinishers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 Finishers, currently there {{this.noOfFinishers > 1 ? 'are' : 'is'}} {{this.noOfFinishers}}. 
+                </span>
+                <button (click)="listPlayers(this.finishers)" *ngIf="this.noOfFinishers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoSpinBowlers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 Spin bowlers, currently there {{this.noOfSpinBowlers > 1 ? 'are' : 'is'}} {{this.noOfSpinBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.spinBowlers)" *ngIf="this.noOfSpinBowlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoFastBowlers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 Fast Bowlers, currently there {{this.noOfFastBowlers > 1 ? 'are' : 'is'}} {{this.noOfFastBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.fastBowlers)" *ngIf="this.noOfFastBowlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoNewballBowlers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 New Ball Bowlers, currently there {{this.noofNewballBowlers > 1 ? 'are' : 'is'}} {{this.noofNewballBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.newballBowlers)" *ngIf="this.noofNewballBowlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumTwoDeathBowlers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 2 New Death Bowlers, currently there {{this.noOfDeathBowlers > 1 ? 'are' : 'is'}} {{this.noOfDeathBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.deathBowlers)" *ngIf="this.noOfDeathBowlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumFourDependableBowlers ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 4 New Dependable Bowlers, currently there {{this.noOfDependableBowlers > 1 ? 'are' : 'is'}} {{this.noOfDependableBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.dependableBowlers)" *ngIf="this.noOfDependableBowlers">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumOneDependableSpinBowler ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 1 New Dependable Spin Bowler, currently there {{this.noOfDependableSpinBowlers > 1 ? 'are' : 'is'}} {{this.noOfDependableSpinBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.dependableSpinBowlers)" *ngIf="this.noOfDependableSpinBowlers > 0">List them!</button>
+            </li>
+            <li class="task-item">
+                <span>
+                    {{this.minimumOneDependableFastBowler ? '✔️' : '❌'}}
+                </span> 
+                <span class="task-item-text">
+                    Minimum 1 New Dependable Fast Bowler, currently there {{this.noofDependableFastBowlers > 1 ? 'are' : 'is'}} {{this.noofDependableFastBowlers}}. 
+                </span>
+                <button (click)="listPlayers(this.dependableFastBowlers)" *ngIf="this.noofDependableFastBowlers > 0">List them!</button>
+            </li>
+        </ul>
+        <h4>**Only retained players are tagged based on previous season performance just to show how tags would work.. Tags will be updated based on the performances this season.</h4>
+    </div>
+</div>
