@@ -11,5 +11,5 @@ import { HeaderComponent } from "./header/header.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'iplfe';
+  title = 'Fantasy League 2025';
 }

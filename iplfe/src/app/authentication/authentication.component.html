@@ -1,0 +1,60 @@
+<div *ngIf="!signInSuccessfull; else loggedInTemplate">
+    <div *ngIf="!this.signUp"> 
+        <form [formGroup]="signInFormGroup" (ngSubmit)="onSignIn()">
+            <label>Email:</label>
+            <input formControlName="email" type="text">
+            <div *ngIf="signInFormGroup.get('email')?.touched && signInFormGroup.get('email')?.invalid">
+                <small class="error">Invalid Email!</small>
+            </div> 
+            <label>Password:</label>
+            <input formControlName="password" type="password">
+            <div *ngIf="signInFormGroup.get('password')?.touched && signInFormGroup.get('password')?.invalid">
+                <small>Invalid password! Password is at least 8 characters.</small>
+            </div>
+            <button type="submit" [disabled]="signInFormGroup.invalid">Sign in</button>
+            <div *ngIf="signUpError" style="color: red;">{{this.signInErrorMessage}}</div>
+        </form>
+        <div style="margin-top: 20px; padding: 0px;">
+            Don't have an account? <button (click)="switchSign(true)">Sign up</button>
+        </div>
+    </div>
+    <div *ngIf="this.signUp">
+        <form [formGroup]="signUpFormGroup" (ngSubmit)="onSignUp()">
+            <label>Email:</label>
+            <input formControlName="email" type="text">
+            <div *ngIf="signUpFormGroup.get('email')?.touched && signUpFormGroup.get('email')?.invalid">
+                <small>Invalid Email!</small>
+            </div>
+            <!--<label>User name:</label>
+            <input formControlName="username" type="text">
+            <div *ngIf="signUpFormGroup.get('username')?.touched && signUpFormGroup.get('username')?.invalid">
+                <small>Invalid Username! Username should at least be 5 characters.</small>
+            </div>!-->
+            <label>Team name:</label>
+            <input formControlName="teamname" type="text">
+            <div *ngIf="signUpFormGroup.get('teamname')?.touched && signUpFormGroup.get('teamname')?.invalid">
+                <small>Invalid Teamname! Teamname should at least be 5 characters.</small>
+            </div>
+            <label>Password:</label>
+            <input formControlName="password" type="password">
+            <div *ngIf="signUpFormGroup.get('password')?.touched && signUpFormGroup.get('password')?.invalid">
+                <small>Invalid Password! Password should at least be 8 characters.</small>
+            </div>
+            <label>Confirm passoword:</label>
+            <input formControlName="confirmpassword" type="password">
+            <button type="submit" [disabled]="signUpFormGroup.invalid">Sign up</button>
+            <div *ngIf="signUpError" style="color: red;">{{this.signUpErrorMessage}}</div>
+            <div *ngIf="signUpSuccessfull" style="color: green;">Sign up successfull!</div>
+        </form>
+        <div style="margin-top: 20px; padding: 0px;">
+            Have an account? <button (click)="switchSign(false)">Sign in</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #loggedInTemplate>
+    <div>
+        <p>Team name: {{this.teamName}}</p>
+        <button (click)="this.logOut()">Logout</button>
+    </div>
+</ng-template>

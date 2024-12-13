@@ -1,10 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MyTeamItemComponent } from "../my-team-item/my-team-item.component";
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AuctionService } from '../auction.service';
 import { MyTeamHeaderComponent } from "../my-team-header/my-team-header.component";
 import { MyTeamDetailsComponent } from "../my-team-details/my-team-details.component";
+import { PlayerService } from '../player.service';
+import { TeamService } from '../team.service';
 
 @Component({
   selector: 'app-my-team',
@@ -14,39 +16,42 @@ import { MyTeamDetailsComponent } from "../my-team-details/my-team-details.compo
   styleUrl: './my-team.component.css'
 })
 export class MyTeamComponent implements OnInit, OnDestroy{
-  @Input() team: any[] = []; 
+  data: any[] = [];
+  team: any[] = []; 
   purse = 120; 
 
   private playerSelectedSubscription: Subscription | null = null; 
   private playerDeletedSubscription: Subscription | null = null; 
 
-  constructor(private auctionService: AuctionService){
-
+  constructor(private auctionService: AuctionService, 
+    private playerService: PlayerService,
+    private teamService: TeamService){
   }
 
   ngOnInit(): void {
 
-    var savedTeam = this.getTeamFromLocalStorage(); 
-    if(savedTeam){
-      this.team = JSON.parse(savedTeam);
-      this.updatePurse(); 
-    }
+    this.playerService.players$.subscribe(players => {
+      this.data = players; 
+      if(this.data.length > 0) this.teamService.getTeam(); 
+    });
+
+    this.teamService.team$.subscribe(team => {
+      this.team = []; 
+      team.forEach(t => this.team = [...this.team, this.data.find(p => p.id === t.playerId)]);
+    });
+
 
     this.playerSelectedSubscription = this.auctionService.playerSelected$.subscribe(
       (player: any) => {
         if(this.isPlayerSelectionValid(player)){
-          this.team.push(player); 
-          this.updatePurse(); 
-          this.saveTeamToLocalStorage(); 
+          this.teamService.addPlayer(player.id, this.team.length);
         }
       }
     ); 
 
     this.playerDeletedSubscription = this.auctionService.playerDeleted$.subscribe(
       (player: any) => {
-        this.team = this.team.filter(p => p.id !== player.id); 
-        this.updatePurse(); 
-        this.saveTeamToLocalStorage(); 
+        this.teamService.deletePlayer(player.id);
       }
     );
   }
@@ -98,8 +103,13 @@ export class MyTeamComponent implements OnInit, OnDestroy{
     return true; 
   }
 
+  fetchPlayers(): void{
+    this.playerService.fetchPlayers(); 
+    this.updatePurse(); 
+  }
+
   updatePurse(): void{
-    this.purse = 120 - this.team.reduce((sum, player) => sum + player.price, 0)
+    this.purse = 120 - this.team.reduce((sum, player) => sum + player.price, 0);
   }
 
   saveTeamToLocalStorage(): void{

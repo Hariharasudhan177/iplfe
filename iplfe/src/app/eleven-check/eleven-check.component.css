@@ -31,11 +31,11 @@ h4 {
 }
 
 .error-icon {
-    color: red;
+    color: rgb(232, 105, 105);
 }
 
 .success-icon {
-    color: green
+    color: rgb(82, 152, 82)
 }
 
 .notification-container{
@@ -47,15 +47,14 @@ h4 {
     flex: 1;
     align-content: center;
     text-align: center;
-    background-color: red;
-    color: white;
+    background-color: rgb(232, 105, 105);
     padding: 10px;
 }
 
 .highlight-positive{
-    background-color: green;
+    background-color: rgb(82, 152, 82);
 }
 
 .highlight-negative{
-    background-color: red;
+    background-color: rgb(232, 105, 105);
 }

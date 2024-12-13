@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  teamName = '';
 
+  constructor(private authenticationService: AuthenticationService){
+    this.authenticationService.authData$.subscribe(authData =>{
+      this.teamName = this.authenticationService.getTeamNameFromToken(authData);
+    });
+  }
 }

@@ -5,6 +5,10 @@
         <button><a routerLink="/rules" routerLinkActive="active" ariaCurrentWhenActive="page">Rules</a></button>
         <button><a routerLink="/stats" routerLinkActive="active" ariaCurrentWhenActive="page">Stats</a></button>
         <button><a routerLink="/leaderboard" routerLinkActive="active" ariaCurrentWhenActive="page">Leaderboard</a></button>
+        <button><a routerLink="/authentication" routerLinkActive="active" ariaCurrentWhenActive="page">{{this.teamName !== '' ? this.teamName : 'Profile'}}</a></button>
     </div>
-    <div class="title">2025 Fantasy League</div>
+    <div class="logo">
+        <img style="height: 20px; width: 20px; margin-right: 7px;" src="icon.png">
+        <div class="title">2025 Fantasy League</div>
+    </div>
 </div>

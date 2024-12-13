@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuctionItemComponent } from "../auction-item/auction-item.component";
 import { CommonModule } from '@angular/common';
 import { AuctionListHeaderComponent } from "../auction-list-header/auction-list-header.component";
 import { PlayerFilterPipe } from '../player-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-auction-list',
@@ -20,10 +20,16 @@ export class AuctionListComponent implements OnInit{
     selectedType: string[] = [];
     filtersVisible: boolean = false; // Control filter visibility
 
-    constructor(private httpClient: HttpClient){}
+    constructor(private playerService: PlayerService){
+
+    }
 
     ngOnInit(): void {
-      this.fetchData(); 
+      this.playerService.players$.subscribe(players => {
+        this.data = players; 
+      });
+
+      //this.playerService.fetchPlayers(); 
     }
 
     onTypeChange(event: any) {
@@ -33,13 +39,6 @@ export class AuctionListComponent implements OnInit{
       } else {
         this.selectedType = this.selectedType.filter(t => t !== type);
       }
-    }
-
-    fetchData(): void {
-      this.httpClient.get<any[]>('http://localhost:5011/api/players/getallplayers').subscribe(response => {
-        this.data = response; 
-        console.log(response);
-      });
     }
 
     toggleFilters(): void {

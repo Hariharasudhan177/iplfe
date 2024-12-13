@@ -59,3 +59,7 @@ button {
     display: flex;
     align-items: center;
 }
+
+.text-highlight{
+    padding-bottom: 20px;
+}
