@@ -13,10 +13,10 @@
 
   ul {
     list-style: disc;
-    margin-left: 20px;
+    padding: 20px;
   }
 
   ul ul {
     list-style: circle;
-    margin-left: 20px;
+    padding: 20px;
   }
