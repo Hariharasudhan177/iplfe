@@ -11,10 +11,15 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class HeaderComponent {
   teamName = '';
+  navPane = false; 
 
   constructor(private authenticationService: AuthenticationService){
     this.authenticationService.authData$.subscribe(authData =>{
       this.teamName = this.authenticationService.getTeamNameFromToken(authData);
     });
+  }
+
+  toggleNavPane(){
+    this.navPane = !this.navPane; 
   }
 }
