@@ -38,6 +38,7 @@ export class MyTeamComponent implements OnInit, OnDestroy{
     this.teamService.team$.subscribe(team => {
       this.team = []; 
       team.forEach(t => this.team = [...this.team, this.data.find(p => p.id === t.playerId)]);
+      this.updatePurse(); 
     });
 
 
@@ -101,11 +102,6 @@ export class MyTeamComponent implements OnInit, OnDestroy{
     }
 
     return true; 
-  }
-
-  fetchPlayers(): void{
-    this.playerService.fetchPlayers(); 
-    this.updatePurse(); 
   }
 
   updatePurse(): void{
