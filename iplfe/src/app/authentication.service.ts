@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly apiUrl = "http://localhost:5011/api/authentication"; 
+  private readonly apiUrl = "https://iplbe-b5fyfye3gaf3dxc3.uksouth-01.azurewebsites.net/api/authentication"; 
 
   private authSubject = new BehaviorSubject<any>(this.getToken()); 
   authData$ = this.authSubject.asObservable(); 

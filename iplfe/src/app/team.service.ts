@@ -9,7 +9,7 @@ import { PlayerService } from './player.service';
 })
 export class TeamService{
 
-  private apiUrl = 'http://localhost:5011/api/team';
+  private apiUrl = 'https://iplbe-b5fyfye3gaf3dxc3.uksouth-01.azurewebsites.net/api/team';
 
   private userId = '';
 
