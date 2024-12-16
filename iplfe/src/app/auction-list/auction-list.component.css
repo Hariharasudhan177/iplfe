@@ -3,6 +3,7 @@
     align-items: center;
     background-color: #cce6ff;
     padding: 10px;
+    gap: 5px; 
 }
 
 .col {
