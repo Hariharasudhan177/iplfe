@@ -9,9 +9,10 @@ import { PlayerService } from './player.service';
 })
 export class TeamService{
 
-  private apiUrl = 'https://iplbe-b5fyfye3gaf3dxc3.uksouth-01.azurewebsites.net/api/team';
+  private apiUrl = 'http://localhost:5011/api/team';
 
   private userId = '';
+  private isVerified = false; 
 
   data: any[] = []; 
   private teamSubject = new BehaviorSubject<any[]>([]); 
@@ -21,7 +22,14 @@ export class TeamService{
     private authenticationService: AuthenticationService,
     private playerService: PlayerService) {
     this.authenticationService.authData$.subscribe(authData => {
-      this.userId = this.authenticationService.getIdFromToken(authData); 
+      console.log("Hari");
+      this.isVerified = this.authenticationService.getIsVerifiedFromToken(authData);
+      console.log(this.isVerified);
+
+      if(this.isVerified){
+        this.userId = this.authenticationService.getIdFromToken(authData); 
+      }
+
       this.playerService.fetchPlayers(); 
     });
 

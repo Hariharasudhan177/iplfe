@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly apiUrl = "https://iplbe-b5fyfye3gaf3dxc3.uksouth-01.azurewebsites.net/api/authentication"; 
+  private readonly apiUrl = "http://localhost:5011/api/authentication"; 
 
   private authSubject = new BehaviorSubject<any>(this.getToken()); 
   authData$ = this.authSubject.asObservable(); 
@@ -47,6 +47,20 @@ export class AuthenticationService {
     ); 
   }
 
+  verifyEmail(verifyData: any): Observable<any>{
+    return this.httpClient.post(`${this.apiUrl}/verifyemail`, verifyData).pipe(
+      map(response => {
+        return {status: true, message: 'Ok'}; 
+      }),
+      catchError(error => {
+        return new Observable(observer => {
+          observer.next({status: false, message: error.error});
+          observer.complete();
+        })
+      })
+    ); 
+  }
+
   logout(): void {
     localStorage.removeItem('authToken');
     this.authSubject.next(null);
@@ -63,7 +77,7 @@ export class AuthenticationService {
   getIdFromToken(token: any): string {
     if (token) {
       try {
-        const decodedToken = jwtDecode<{ id: string, team: string }>(token);
+        const decodedToken = jwtDecode<{ id: string, team: string, isVerified: boolean}>(token);
         return decodedToken.id; 
       } catch {
         this.logout(); 
@@ -77,7 +91,7 @@ export class AuthenticationService {
   getTeamNameFromToken(token: any): string {
     if (token) {
       try {
-        const decodedToken = jwtDecode<{ id: string, name: string }>(token);
+        const decodedToken = jwtDecode<{ id: string, name: string, isVerified: boolean}>(token);
         return decodedToken.name; 
       } catch {
         this.logout(); 
@@ -86,5 +100,19 @@ export class AuthenticationService {
     }
 
     return '';
+  }
+
+  getIsVerifiedFromToken(token: any): boolean{
+    if(token){
+      try {
+        const decodedToken = jwtDecode<{id: string, name: String, isVerified: boolean}>(token); 
+        return decodedToken.isVerified; 
+      } catch {
+        this.logout();
+        return false; 
+      }
+    }
+
+    return false; 
   }
 }

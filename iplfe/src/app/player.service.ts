@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class PlayerService {
-  private apiUrl = 'https://iplbe-b5fyfye3gaf3dxc3.uksouth-01.azurewebsites.net/api/players';
+  private apiUrl = 'http://localhost:5011/api/players';
 
   private playerSubject = new BehaviorSubject<any[]>([]);
   players$ = this.playerSubject.asObservable(); 
