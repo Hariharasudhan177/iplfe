@@ -19,8 +19,8 @@ export class VerifyEmailComponent implements OnInit{
       const email = params["email"];
       const token = params["token"];
       const verifyData = {
-        "email": "", 
-        "token": ""
+        "email": email, 
+        "token": token
       };
       console.log(token);
       if(token){
