@@ -12,11 +12,13 @@
     </div>
 </div>
 
-<div class="nav-button-cont" [class.open]="navPane">
-    <button><a routerLink="/squad" routerLinkActive="active" ariaCurrentWhenActive="page">Squad</a></button>
-    <button><a routerLink="/team" routerLinkActive="active" ariaCurrentWhenActive="page">PlayingXI</a></button>
-    <button><a routerLink="/rules" routerLinkActive="active" ariaCurrentWhenActive="page">Rules</a></button>
-    <button><a routerLink="/stats" routerLinkActive="active" ariaCurrentWhenActive="page">Stats</a></button>
-    <button><a routerLink="/leaderboard" routerLinkActive="active" ariaCurrentWhenActive="page">Leaderboard</a></button>
-    <button><a routerLink="/authentication" routerLinkActive="active" ariaCurrentWhenActive="page">{{this.teamName !== '' ? this.teamName : 'Profile'}}</a></button>
+<div class="nav-pane" [class.open]="navPane">
+    <div class="nav-button-cont">
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/squad" routerLinkActive="active" ariaCurrentWhenActive="page">Squad</a></button>
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/team" routerLinkActive="active" ariaCurrentWhenActive="page">PlayingXI</a></button>
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/rules" routerLinkActive="active" ariaCurrentWhenActive="page">Rules</a></button>
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/stats" routerLinkActive="active" ariaCurrentWhenActive="page">Stats</a></button>
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/leaderboard" routerLinkActive="active" ariaCurrentWhenActive="page">Leaderboard</a></button>
+        <button class="nav-button" (click)="toggleNavPane()"><a routerLink="/authentication" routerLinkActive="active" ariaCurrentWhenActive="page">{{this.teamName !== '' ? this.teamName : 'Profile'}}</a></button>
+    </div>
 </div>

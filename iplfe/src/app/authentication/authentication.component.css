@@ -67,3 +67,9 @@ div > button:first-child {
 form {
     padding-top: 10px;
 }
+
+.logged-in-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
