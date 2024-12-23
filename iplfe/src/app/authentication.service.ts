@@ -105,8 +105,8 @@ export class AuthenticationService {
   getIsVerifiedFromToken(token: any): boolean{
     if(token){
       try {
-        const decodedToken = jwtDecode<{id: string, name: String, isVerified: boolean}>(token); 
-        return decodedToken.isVerified; 
+        const decodedToken = jwtDecode<{id: string, name: String, isVerified: string}>(token); 
+        return decodedToken.isVerified === 'True' ? true : false; 
       } catch {
         this.logout();
         return false; 

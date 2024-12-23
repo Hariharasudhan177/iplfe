@@ -56,5 +56,10 @@
     <div>
         <p>Team name: {{this.teamName}}</p>
         <button (click)="this.logOut()">Logout</button>
+        <div *ngIf="isLoggedIn">
+            <div *ngIf="!isVerified">
+                <p>Please click the verification link sent to your email. (Check in spam folder too!)</p>
+            </div>
+        </div>
     </div>
 </ng-template>

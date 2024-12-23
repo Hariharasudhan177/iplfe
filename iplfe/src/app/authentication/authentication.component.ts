@@ -25,6 +25,8 @@ export class AuthenticationComponent implements OnInit{
   signInFormGroup: FormGroup; 
 
   teamName: string = ''; 
+  isLoggedIn = false; 
+  isVerified = false; 
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService){
     this.signInFormGroup = this.formBuilder.group({
@@ -44,7 +46,9 @@ export class AuthenticationComponent implements OnInit{
     this.authenticationService.authData$.subscribe(authData => {
       this.signInSuccessfull = authData !== null; 
       this.teamName = this.authenticationService.getTeamNameFromToken(authData);
-      console.log(this.teamName);
+      this.isLoggedIn = true; 
+      this.isVerified = this.authenticationService.getIsVerifiedFromToken(authData);
+      console.log(this.isVerified);
     });
   }
 
