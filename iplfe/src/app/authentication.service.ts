@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly apiUrl = "http://localhost:5011/api/authentication"; 
+  private readonly apiUrl = "https://ipl2025challenge.com/api/authentication"; 
 
   private authSubject = new BehaviorSubject<any>(this.getToken()); 
   authData$ = this.authSubject.asObservable(); 

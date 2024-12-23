@@ -9,7 +9,7 @@ import { PlayerService } from './player.service';
 })
 export class TeamService{
 
-  private apiUrl = 'http://localhost:5011/api/team';
+  private apiUrl = 'https://ipl2025challenge.com/api/team';
 
   private userId = '';
   private isVerified = false; 
